@@ -67,10 +67,10 @@ public class TeamController {
         }
     }
 
-    @DeleteMapping("/{teamId}")
-    public ResponseEntity<Void> deleteTeam(@PathVariable int teamId) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTeam(@PathVariable int id) {
         try {
-            teamServiceJpa.deleteTeam(teamId);
+            teamServiceJpa.deleteTeam(id);
             return ResponseEntity.noContent().build();
         } catch (SQLException e) {
             return ResponseEntity.internalServerError().build();
