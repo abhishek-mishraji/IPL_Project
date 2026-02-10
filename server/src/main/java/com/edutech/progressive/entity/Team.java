@@ -31,6 +31,18 @@ public class Team implements Comparable<Team> {
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<Cricketer> cricketers;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "firstTeam", cascade = CascadeType.ALL)
+    private List<Match> firstTeamMatches;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "secondTeam", cascade = CascadeType.ALL)
+    private List<Match> secondTeamMatches;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "winnerTeam", cascade = CascadeType.ALL)
+    private List<Match> winnerTeamMatches;
+
     public Team() {
     }
 
@@ -88,6 +100,30 @@ public class Team implements Comparable<Team> {
 
     public void setCricketers(List<Cricketer> cricketers) {
         this.cricketers = cricketers;
+    }
+
+    public List<Match> getFirstTeamMatches() {
+        return firstTeamMatches;
+    }
+
+    public void setFirstTeamMatches(List<Match> firstTeamMatches) {
+        this.firstTeamMatches = firstTeamMatches;
+    }
+
+    public List<Match> getSecondTeamMatches() {
+        return secondTeamMatches;
+    }
+
+    public void setSecondTeamMatches(List<Match> secondTeamMatches) {
+        this.secondTeamMatches = secondTeamMatches;
+    }
+
+    public List<Match> getWinnerTeamMatches() {
+        return winnerTeamMatches;
+    }
+
+    public void setWinnerTeamMatches(List<Match> winnerTeamMatches) {
+        this.winnerTeamMatches = winnerTeamMatches;
     }
 
     @Override

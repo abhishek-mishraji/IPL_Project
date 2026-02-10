@@ -27,6 +27,12 @@ public class TicketBookingServiceImpl implements TicketBookingService {
 
     @Override
     public int createBooking(TicketBooking ticketBooking) {
+        if (ticketBooking != null && ticketBooking.getMatch() != null) {
+            String status = ticketBooking.getMatch().getStatus();
+            if (status != null && !status.equalsIgnoreCase("Scheduled")) {
+                throw new IllegalStateException("Ticket booking allowed only for Scheduled matches");
+            }
+        }
         TicketBooking saved = ticketBookingRepository.save(ticketBooking);
         return saved.getBookingId();
     }
